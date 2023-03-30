@@ -20,7 +20,6 @@ export const MegaverseMap = styled.div`
 export const MegaverseRow = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 6px;
 `;
 
 
