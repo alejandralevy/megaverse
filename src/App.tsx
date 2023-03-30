@@ -1,5 +1,5 @@
 import React from 'react';
-import Megaverse from "./ components/Megaverse/Megaverse";
+import Megaverse from "./ components/Megaverse";
 import "./App.css";
 
 function App() {
