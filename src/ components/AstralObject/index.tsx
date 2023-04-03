@@ -4,7 +4,7 @@ import { AstralObjectContainer } from "./styles";
 import "../../icon-library";
 import { IconName, RotateProp } from "@fortawesome/fontawesome-svg-core";
 
-export type AstralObjectTypes = "SOOLON" | "COMETH" | "POLYANET" | "SPACE";
+export type AstralObjectTypes = "SOLOON" | "COMETH" | "POLYANET" | "SPACE";
 export type AstralObjectConfigs =
   | "WHITE"
   | "BLUE"
@@ -21,9 +21,9 @@ export interface AstralObjectProps {
 }
 
 const AstralObject: FC<AstralObjectProps> = ({ type, config }) => {
-  const parseAstralObjectToIcon = () => {
+  const getIconName = () => {
     switch (type) {
-      case "SOOLON":
+      case "SOLOON":
         return "circle" as IconName;
       case "SPACE":
         return "star" as IconName;
@@ -52,12 +52,13 @@ const AstralObject: FC<AstralObjectProps> = ({ type, config }) => {
   };
 
   const getIconColor = () => {
+    debugger;
     if (type === "POLYANET") return "#f0ec75";
     if (type === "SPACE") return "#2c2183";
     if (type === "COMETH") return "#dd6840";
     switch (config) {
       case "WHITE":
-        return "#fff";
+        return "#dcd9df";
       case "RED":
         return "#e63737";
       case "BLUE":
@@ -65,14 +66,14 @@ const AstralObject: FC<AstralObjectProps> = ({ type, config }) => {
       case "PURPLE":
         return "#955add";
       default:
-        return "#fff";
+        return "#dcd9df";
     }
   };
 
   return (
     <AstralObjectContainer>
       <FontAwesomeIcon
-        icon={["fas", parseAstralObjectToIcon()]}
+        icon={["fas", getIconName()]}
         rotation={getIconRotation()}
         style={{ color: getIconColor() }}
       />

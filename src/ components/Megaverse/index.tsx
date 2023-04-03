@@ -1,33 +1,19 @@
 import { FC } from "react";
 import usePollyverse from "../../hooks/useMegaverse";
-import AstralObject, {
-  AstralObjectConfigs,
-  AstralObjectTypes,
-} from "../AstralObject";
+import { FontAwesomeIcon } from "../../icon-library";
+import { parseAstralObjectType } from "../../utils/astralObjectTypeConfig";
+import AstralObject from "../AstralObject";
 import { MegaverseMap, MegaverseRow, MapContainer } from "./styles";
 
 const Megaverse: FC = () => {
-  const { data, isLoading } = usePollyverse();
-
-  const parseAstralObject = (astralObject: String) => {
-    const typeAndConfig = astralObject.split("_");
-    return {
-      type:
-        typeAndConfig[1] === "COMETH"
-          ? typeAndConfig[1]
-          : (typeAndConfig[0] as AstralObjectTypes),
-      config: (typeAndConfig[1] === "COMETH"
-        ? typeAndConfig[0]
-        : typeAndConfig[1]) as AstralObjectConfigs,
-    };
-  };
+  const { currentMap, isLoading, generateMap } = usePollyverse();
 
   const renderPolyverseMap = () => {
-    return data?.map((mapRow) => {
+    return currentMap?.map((mapRow) => {
       return (
         <MegaverseRow>
           {mapRow.map((astralObject) => {
-            const { type, config } = parseAstralObject(astralObject);
+            const { type, config } = parseAstralObjectType(astralObject);
             return <AstralObject type={type} config={config} />;
           })}
         </MegaverseRow>
@@ -38,7 +24,18 @@ const Megaverse: FC = () => {
   return (
     <MapContainer>
       <MegaverseMap>
-        {isLoading ? <div>Loading...</div> : renderPolyverseMap()}
+        {isLoading ? (
+          <div>
+            <FontAwesomeIcon
+              icon={["fas", "spinner"]}
+              spin
+              style={{ color: "53c23d" }}
+            />
+            <p>Loading...</p>
+          </div>
+        ) : (
+          renderPolyverseMap()
+        )}
       </MegaverseMap>
     </MapContainer>
   );
