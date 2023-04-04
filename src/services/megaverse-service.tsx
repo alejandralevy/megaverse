@@ -15,7 +15,7 @@ interface myMapResponse {
   };
 }
 
-const CANDIDATE_ID = "5b7ddb8a-1ad4-45db-a589-f8d198a70762";
+const CANDIDATE_ID = "312810cc-5b7a-4e41-80ab-a41780113a1f";
 
 export const getGoalMap = async () => {
   const response = await fetch(
@@ -41,9 +41,13 @@ export const getMyMap = async () => {
 
 export const generateMap = async (goalMap: MegaverseMap) => {
   goalMap.forEach((row, rowIndex) => {
-    row.forEach((astralObject, columnIndex) => {
-      createAstralObject(astralObject, rowIndex, columnIndex);
-    });
+    setTimeout(() => {
+      row.forEach((astralObject, columnIndex) => {
+        setTimeout(() => {
+          createAstralObject(astralObject, rowIndex, columnIndex);
+        }, 1000 * (columnIndex + 1));
+      });
+    }, 1000 * (rowIndex + 1));
   });
 };
 
@@ -77,6 +81,7 @@ const createPolyanet = async (row: number, column: number) => {
 };
 
 const createSoloon = async (row: number, column: number, color: string) => {
+  debugger;
   const body = JSON.stringify({
     row,
     column,
@@ -93,6 +98,7 @@ const createSoloon = async (row: number, column: number, color: string) => {
 };
 
 const createCometh = async (row: number, column: number, direction: string) => {
+  debugger;
   const body = JSON.stringify({
     row,
     column,

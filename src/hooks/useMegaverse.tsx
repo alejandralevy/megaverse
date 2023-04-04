@@ -8,14 +8,16 @@ import {
 const useMegaverse = () => {
   const queryClient = useQueryClient();
   const GOAL_MAP = ["goalMap"];
-  const MY_MAP = ["myMap"];
+  const CURRENT_MAP = ["currentMap"];
 
   const goalMap = useQuery(GOAL_MAP, () => getGoalMap());
-  const myMap = useQuery(MY_MAP, () => getMyMap());
+  const currentMap = useQuery(CURRENT_MAP, () => getMyMap());
 
   const generateMapMutation = useMutation(generateMap, {
     onSuccess: () => {
-      queryClient.fetchQuery(MY_MAP);
+      console.log("TERMINE EL MAPA");
+      debugger;
+      queryClient.fetchQuery(CURRENT_MAP);
     },
   });
 
@@ -30,11 +32,12 @@ const useMegaverse = () => {
   };
 
   return {
-    isLoading: goalMap.isLoading,
+    isLoading: currentMap.isLoading,
     error: goalMap.error,
     goalMap: goalMap.data?.goal,
-    currentMap: myMap.data?.map?.content,
+    currentMap: currentMap.data?.map?.content,
     generateMap: generateMapAction,
+    isGeneratingMap: generateMapMutation.isLoading,
   };
 };
 

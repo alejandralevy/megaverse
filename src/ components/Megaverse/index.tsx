@@ -3,10 +3,16 @@ import usePollyverse from "../../hooks/useMegaverse";
 import { FontAwesomeIcon } from "../../icon-library";
 import { parseAstralObjectType } from "../../utils/astralObjectTypeConfig";
 import AstralObject from "../AstralObject";
-import { MegaverseMap, MegaverseRow, MapContainer } from "./styles";
+import {
+  MegaverseMap,
+  MegaverseRow,
+  MapContainer,
+  ActionButton,
+} from "./styles";
 
 const Megaverse: FC = () => {
-  const { currentMap, isLoading, generateMap } = usePollyverse();
+  const { currentMap, isLoading, generateMap, isGeneratingMap } =
+    usePollyverse();
 
   const renderPolyverseMap = () => {
     return currentMap?.map((mapRow) => {
@@ -37,6 +43,9 @@ const Megaverse: FC = () => {
           renderPolyverseMap()
         )}
       </MegaverseMap>
+      <ActionButton onClick={generateMap}>
+        {isGeneratingMap ? "Generating Megaverse" : "Create Megaverse!"}
+      </ActionButton>
     </MapContainer>
   );
 };

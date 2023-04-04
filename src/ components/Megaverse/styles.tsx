@@ -26,7 +26,9 @@ export const ActionButton = styled.button`
   padding: 16px;
   border: 1px solid #2c2183;
   background-color: #2c2183;
-  color: white;
+  color: #fff;
+  &:hover {
+    color: #2c2183;
+    background-color: #fff;
+  }
 `;
-
-

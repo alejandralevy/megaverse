@@ -6,14 +6,14 @@ import { IconName, RotateProp } from "@fortawesome/fontawesome-svg-core";
 
 export type AstralObjectTypes = "SOLOON" | "COMETH" | "POLYANET" | "SPACE";
 export type AstralObjectConfigs =
-  | "WHITE"
-  | "BLUE"
-  | "PURPLE"
-  | "RED"
-  | "DOWN"
-  | "UP"
-  | "RIGHT"
-  | "LEFT"
+  | "white"
+  | "blue"
+  | "purple"
+  | "red"
+  | "down"
+  | "up"
+  | "right"
+  | "left"
   | null;
 export interface AstralObjectProps {
   type: AstralObjectTypes;
@@ -38,13 +38,13 @@ const AstralObject: FC<AstralObjectProps> = ({ type, config }) => {
 
   const getIconRotation = () => {
     switch (config) {
-      case "UP":
+      case "up":
         return 90 as RotateProp;
-      case "DOWN":
+      case "down":
         return 0 as RotateProp;
-      case "LEFT":
+      case "left":
         return 180 as RotateProp;
-      case "RIGHT":
+      case "right":
         return 270 as RotateProp;
       default:
         return 0 as RotateProp;
@@ -52,18 +52,17 @@ const AstralObject: FC<AstralObjectProps> = ({ type, config }) => {
   };
 
   const getIconColor = () => {
-    debugger;
     if (type === "POLYANET") return "#f0ec75";
     if (type === "SPACE") return "#2c2183";
     if (type === "COMETH") return "#dd6840";
     switch (config) {
-      case "WHITE":
+      case "white":
         return "#dcd9df";
-      case "RED":
+      case "red":
         return "#e63737";
-      case "BLUE":
+      case "blue":
         return "#5a69dd";
-      case "PURPLE":
+      case "purple":
         return "#955add";
       default:
         return "#dcd9df";

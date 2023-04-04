@@ -13,8 +13,8 @@ export const parseAstralObject = (astralObject: String) => {
         ? typeAndConfig[1]
         : (typeAndConfig[0] as AstralObjectTypes),
     config: (typeAndConfig[1] === "COMETH" || typeAndConfig[1] == "SOLOON"
-      ? typeAndConfig[0]
-      : typeAndConfig[1]) as AstralObjectConfigs,
+      ? typeAndConfig[0]?.toLowerCase()
+      : typeAndConfig[1]?.toLowerCase()) as AstralObjectConfigs,
   };
 };
 
@@ -35,12 +35,12 @@ export const parseAstralObjectType = (
     case 1:
       return {
         type: "SOLOON" as AstralObjectTypes,
-        config: astralObject.color as AstralObjectConfigs,
+        config: astralObject.color?.toLowerCase() as AstralObjectConfigs,
       };
     case 2:
       return {
         type: "COMETH" as AstralObjectTypes,
-        config: astralObject.direction as AstralObjectConfigs,
+        config: astralObject.direction?.toLowerCase() as AstralObjectConfigs,
       };
     default:
       return {
